@@ -1,4 +1,4 @@
-package com.BYjosep.Tema9;
+package com.BYjosep.Tema9.ejemplos;
 
 import java.util.HashSet;
 import java.util.Set;
