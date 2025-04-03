@@ -13,8 +13,8 @@ public class Pila<T> implements IPila<T> {
         this(INITIAL_SIZE);
     }
 
-    public Pila(int initialCapacity) {
-        data = new ArrayList<>(initialCapacity);
+    public Pila(int capacity) {
+        data = new ArrayList<>(capacity);
     }
 
     @Override
