@@ -76,8 +76,6 @@ public class Main {
     }
 
     private static void mostrarDiccionario() {
-        System.out.println("\n===== Diccionario Completo =====");
-        traductor.getDiccionario().forEach((val, eng) ->
-                System.out.println("- " + val + " ⇄ " + eng));
+        System.out.println(traductor.toString());
     }
 }

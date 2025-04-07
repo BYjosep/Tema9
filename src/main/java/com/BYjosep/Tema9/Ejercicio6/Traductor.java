@@ -37,4 +37,14 @@ public class Traductor {
     public Map<String, String> getDiccionario() {
         return diccionario;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("\n===== Diccionario Completo =====");
+        getDiccionario().forEach((val, eng) ->
+                builder.append("- " + val + " ⇄ " + eng));
+
+        return builder.toString();
+    }
 }
