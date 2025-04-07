@@ -47,7 +47,7 @@ public class Main {
                 ╚═════════════════════════════════════════╝
 
                 Elige una opción:
-                """);
+                """,0,3,"La opcion no existe");
     }
 
     private static void ingresarTraducciones() {

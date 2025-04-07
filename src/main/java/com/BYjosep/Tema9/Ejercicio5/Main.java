@@ -10,7 +10,7 @@ public class Main {
         int minimoPacientes = 1, maximoPacientes = 1000;
 
         int cuantosPacientes = LibInInts.ingresarUnNumero(
-                "¿Cuántos pacientes desea generar entre " + minimoPacientes + " y " + maximoPacientes + ":",
+                "Cuántos pacientes desea generar entre " + minimoPacientes + " y " + maximoPacientes + ":",
                 minimoPacientes,
                 maximoPacientes
         );
