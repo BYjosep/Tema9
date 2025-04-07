@@ -1,5 +1,8 @@
 package com.BYjosep.Tema9.Ejercicio5;
 
+import com.BYjosep.Tema9.lib.LibRandoms;
+import com.BYjosep.Tema9.lib.LibStrings;
+
 import java.util.Random;
 
 public enum Sexo {
@@ -18,7 +21,7 @@ public enum Sexo {
     }
 
     public Sexo random(){
-        Random random = new Random();
-        return Sexo.values()[random.nextInt(Sexo.values().length)];
+
+        return Sexo.values()[LibRandoms.ran(0,Sexo.values().length)];
     }
 }

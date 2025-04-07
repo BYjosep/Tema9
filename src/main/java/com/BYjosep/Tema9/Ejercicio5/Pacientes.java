@@ -67,7 +67,7 @@ public class Pacientes extends ArrayList {
             }
         }
         if (contadorSexoNoIdentificado > 0) {
-            ANSI.printf("Se han encontrado " + contadorSexoNoIdentificado + " con sexo no identificado",
+            ANSI.printf("Se han encontrado " + contadorSexoNoIdentificado + " pacientes con sexo no identificado",
                     false, ANSI.Color.YELLOW, ANSI.Color.NONE);
         }
         array[0] = contadorMasculinos;
