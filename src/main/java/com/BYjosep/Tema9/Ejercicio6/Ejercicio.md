@@ -16,11 +16,9 @@ Queremos hacer una aplicación que guarde parejas de palabras en **valenciano-in
 - [ ] Mostrar menú principal
 - [ ] Opción 1: Introducir parejas de palabras
 - [ ] Pedir cuántas parejas se desean introducir
-- [ ] Solicitar palabra en inglés
-- [ ] Solicitar traducción al valenciano
+- [x] Solicitar traducción 
 - [ ] Guardar correctamente cada pareja
 - [ ] Opción 2: Traducir palabra
-- [ ] Solicitar palabra en inglés a buscar
 - [ ] Mostrar traducción si existe
 - [ ] Indicar si la palabra no existe
 - [ ] Opción 0: Salir de la aplicación
