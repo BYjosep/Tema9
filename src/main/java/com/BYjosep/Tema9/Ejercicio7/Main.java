@@ -5,7 +5,7 @@ import com.BYjosep.Tema9.lib.LibDoubles;
 import com.BYjosep.Tema9.lib.LibStrings;
 import com.BYjosep.Tema9.lib.Int.LibInInts;
 
-public class Main {
+public class  Main {
     public static void main(String[] args) {
         ConversorMonedas conversor = new ConversorMonedas();
         boolean continuar = true;
@@ -14,7 +14,7 @@ public class Main {
 
             int opcion = LibInInts.ingresarUnNumero("""
                 ╔════════════════════════════════════════════════════════╗
-                ║              CONVERSOR DE MONEDAS (EUR)               ║
+                ║              CONVERSOR DE MONEDAS (EUR)                ║
                 ╠════════════════════════════════════════════════════════╣
                 ║  1. Mostrar monedas disponibles                        ║
                 ║  2. Convertir de EUR a otra moneda                     ║

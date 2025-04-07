@@ -4,6 +4,7 @@ import com.BYjosep.Tema9.lib.ANSI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Clase que gestiona una colección de objetos {@link Paciente}.
@@ -74,6 +75,19 @@ public class Pacientes extends ArrayList {
         array[1] = contadorFemininos;
 
         return array;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Pacientes pacientes1 = (Pacientes) o;
+        return Objects.equals(pacientes, pacientes1.pacientes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), pacientes);
     }
 
     @Override

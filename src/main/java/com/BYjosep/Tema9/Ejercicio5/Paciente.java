@@ -3,6 +3,7 @@ package com.BYjosep.Tema9.Ejercicio5;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 public class Paciente {
 
@@ -115,6 +116,17 @@ public class Paciente {
         this.peso = peso;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Paciente paciente = (Paciente) o;
+        return id == paciente.id && Float.compare(altura, paciente.altura) == 0 && Float.compare(peso, paciente.peso) == 0 && Double.compare(imc, paciente.imc) == 0 && Objects.equals(nombre, paciente.nombre) && Objects.equals(fechaNacimiento, paciente.fechaNacimiento) && sexo == paciente.sexo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, fechaNacimiento, sexo, altura, peso, imc);
+    }
 
     @Override
     public String toString() {
