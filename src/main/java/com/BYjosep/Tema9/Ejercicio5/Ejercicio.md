@@ -33,4 +33,4 @@ El programa deberá cumplir los siguientes requisitos:
 >	|27-29.9 | Sobrepeso grado II|
 >	| >29.9 | Sobrepeso grado III |
 
-> - [x] f) Implementar
+> - [ ] f) Implementar
