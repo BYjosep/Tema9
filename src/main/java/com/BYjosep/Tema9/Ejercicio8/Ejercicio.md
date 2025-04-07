@@ -23,54 +23,49 @@ Este programa permite gestionar un diccionario utilizando la estructura `Map`. E
 
 ## ✅ Funcionalidades a Implementar
     
-- [ ] ### Opción 1: Añadir palabra
+- [x] ### Opción 1: Añadir palabra
 
- - [ ] Solicitar palabra
- - [ ] Solicitar definición
- - [ ]  Verificar si la palabra ya existe
- - [ ]  Si no existe, añadir al diccionario
- - [ ]  Si ya existe, mostrar mensaje de error
-
-
-
-- [ ]  ### Opción 2: Modificar palabra
+ - [x] Solicitar palabra
+ - [x] Solicitar definición
+ - [x]  Verificar si la palabra ya existe
+ - [x]  Si no existe, añadir al diccionario
+ - [x]  Si ya existe, mostrar mensaje de error
 
 
- - [ ] Solicitar palabra a modificar
- - [ ] Verificar existencia
- - [ ] Si existe, pedir nueva definición y actualizar
- - [ ] Si no existe, mostrar mensaje de error
+
+- [x]  ### Opción 2: Modificar palabra
+
+
+ - [x] Solicitar palabra a modificar
+ - [x] Verificar existencia
+ - [x] Si existe, pedir nueva definición y actualizar
+ - [x] Si no existe, mostrar mensaje de error
     
 
-- [ ] ### Opción 3: Eliminar palabra
+- [X] ### Opción 3: Eliminar palabra
 
-- [ ] Solicitar palabra a eliminar
-
- - [ ] Verificar si existe
-
-- [ ] Si existe, eliminar del diccionario
-
- - [ ] Si no existe, mostrar mensaje de error
+- [x] Solicitar palabra a eliminar
+- [x] Verificar si existe
+- [x] Si existe, eliminar del diccionario
+- [x] Si no existe, mostrar mensaje de error
     
 
-- [ ] ### Opción 4: Consultar palabra
+- [x] ### Opción 4: Consultar palabra
 
-- [ ] Solicitar palabra a consultar
-    
-- [ ] Mostrar la definición si existe
-    
-- [ ] Mostrar mensaje si no existe
+- [x] Solicitar palabra a consultar
+- [x] Mostrar la definición si existe
+- [x] Mostrar mensaje si no existe
    
 
-- [ ] ### Opción 5: Mostrar diccionario
+- [x] ### Opción 5: Mostrar diccionario
 
-- [ ] Recorrer todas las entradas del `Map` 
-- [ ] Mostrar palabra y su definición formateadas
+- [x] Recorrer todas las entradas del `Map` 
+- [x] Mostrar palabra y su definición formateadas
   
 
 ### Opción 0: Salir
 
-- [ ]  Terminar la ejecución del programa
+- [x]  Terminar la ejecución del programa
     
 
 ### Extras opcionales
