@@ -2,8 +2,6 @@
 
 >
 >
->
-> hasta el 8
->
+> hasta el 10
 >
 >
