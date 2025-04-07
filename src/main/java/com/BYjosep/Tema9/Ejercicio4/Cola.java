@@ -1,6 +1,5 @@
 package com.BYjosep.Tema9.Ejercicio4;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -53,9 +52,6 @@ public class Cola<T> implements ICola<T> {
         }
         return data.getFirst();
     }
-
-
-
 
 
     public void clear() {

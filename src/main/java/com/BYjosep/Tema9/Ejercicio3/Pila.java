@@ -38,7 +38,7 @@ public class Pila<T> implements IPila<T> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return data.get(size()-1);
+        return data.get(size() - 1);
 
     }
 
@@ -61,12 +61,11 @@ public class Pila<T> implements IPila<T> {
     }
 
 
-
     public T peek(int n) {
         if (n <= 0 || n > size() || isEmpty()) {
             throw new IllegalArgumentException();
         }
-        return (T)data.get(size()-n);
+        return data.get(size() - n);
     }
 
     public void peekElements(int n) {
@@ -89,7 +88,7 @@ public class Pila<T> implements IPila<T> {
         }
         for (int i = size() - 1; i >= 0; i--) {
             if (element == null) {
-                if (data.get(i)== null) {
+                if (data.get(i) == null) {
                     return size() - i;
                 }
             } else if (element.equals(data.get(i))) {
@@ -165,7 +164,7 @@ public class Pila<T> implements IPila<T> {
         for (int i = 0; i < size(); i++) {
             sb.append(data.get(i)).append(", ");
         }
-        sb.replace(sb.length()-2, sb.length(),"").append("\n").append("]");
+        sb.replace(sb.length() - 2, sb.length(), "").append("\n").append("]");
         return sb.toString();
     }
 }

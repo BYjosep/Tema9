@@ -2,7 +2,7 @@ package com.BYjosep.Tema9.Ejercicio2;
 
 import java.util.*;
 
-public class ArrayListEstadisticas implements iEstadisticas{
+public class ArrayListEstadisticas implements iEstadisticas {
     private final List<Double> lista;
 
     public ArrayListEstadisticas() {
@@ -13,16 +13,16 @@ public class ArrayListEstadisticas implements iEstadisticas{
         this.lista = new ArrayList<>(initialCapacity);
     }
 
-    public void add (double valor){
+    public void add(double valor) {
         try {
             lista.add(valor);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Fatal error");
         }
     }
 
 
-    public int size(){
+    public int size() {
         return lista.size();
     }
 

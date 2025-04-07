@@ -7,6 +7,15 @@ public enum IMC {
     SOBREPESO_GRADO_2("Sobre peso grado 2"),
     SOBREPESO_GRADO_3("Sobre peso grado 3");
 
+    private final String mensaje;
+
     IMC(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    @Override
+    public String toString() {
+        return mensaje;
+
     }
 }

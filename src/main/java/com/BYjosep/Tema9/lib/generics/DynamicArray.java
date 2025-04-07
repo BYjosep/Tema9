@@ -1,19 +1,14 @@
-package com.BYjosep.Tema9.dinamicArrayIterable;
+package com.BYjosep.Tema9.lib.generics;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class DynamicArray<T> implements Iterable<T>, Iterator<T> {
-
+public class DynamicArray<T> {
 
     private final static int DEFAULT_CAPACITY = 10;
     private final static float GROW_FACTOR = 2f;
     private T[] data;
     private int size;
-
-    private int indexIterator = -1;
 
     public DynamicArray() {
         this(DEFAULT_CAPACITY);
@@ -53,13 +48,6 @@ public class DynamicArray<T> implements Iterable<T>, Iterator<T> {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
         return data[index];
-    }
-
-    private int getIndex() {
-        if (size == 0) {
-            throw new ArrayStoreException("El elemento no existe");
-        }
-        return 0;
     }
 
     public boolean add(T value) {
@@ -118,7 +106,6 @@ public class DynamicArray<T> implements Iterable<T>, Iterator<T> {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     private void expand() {
         int newCapacity = Math.max(DEFAULT_CAPACITY, Math.round(data.length * GROW_FACTOR));
         T[] copy = (T[]) new Object[newCapacity];
@@ -172,7 +159,6 @@ public class DynamicArray<T> implements Iterable<T>, Iterator<T> {
         data = Arrays.copyOf(data, size);
     }
 
-
     public boolean swap(int index1, int index2) {
         if (index1 >= size || index2 >= size || index1 < 0 || index2 < 0)
             return false;
@@ -181,36 +167,4 @@ public class DynamicArray<T> implements Iterable<T>, Iterator<T> {
         data[index2] = aux;
         return true;
     }
-
-
-    @Override
-    public Iterator<T> iterator() {
-        indexIterator = -1;
-        return this;
-    }
-
-    @Override
-    public boolean hasNext() {
-        if (indexIterator == -1) {
-
-            indexIterator = getIndex();
-
-        }
-        return !(indexIterator < this.size);
-    }
-
-    @Override
-    public T next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException("No hay mas elementos");
-        }
-
-        if (data[indexIterator] == null) {
-            indexIterator++;
-            next();
-        }
-        return data[indexIterator++];
-    }
-
-
 }
