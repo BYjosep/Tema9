@@ -14,28 +14,28 @@ Crea un programa en Java que utilice la interfaz `Map` para calcular el cambio d
 
 ## 🧾 Monedas a implementar
 
-- [ ] a) USD (Dólar USA)
-- [ ] b) GBP (Libra esterlina)
-- [ ] c) INR (Rupia India)
-- [ ] d) AUD (Dólar Australiano)
-- [ ] e) CAD (Dólar Canadiense)
-- [ ] f) ARS (Peso Argentino)
-- [ ] g) BOB (Boliviano Boliviano)
-- [ ] h) CLP (Peso Chileno)
-- [ ] i) VEZ (Peso Colombiano)
-- [ ] j) CRC (Colón Costarricense)
-- [ ] k) CUP (Peso Cubano)
-- [ ] l) DOP (Peso Dominicano)
-- [ ] m) MXN (Peso Mexicano)
+- [x] a) USD (Dólar USA)
+- [x] b) GBP (Libra esterlina)
+- [x] c) INR (Rupia India)
+- [x] d) AUD (Dólar Australiano)
+- [x] e) CAD (Dólar Canadiense)
+- [x] f) ARS (Peso Argentino)
+- [x] g) BOB (Boliviano Boliviano)
+- [x] h) CLP (Peso Chileno)
+- [x] i) VEZ (Peso Colombiano)
+- [x] j) CRC (Colón Costarricense)
+- [x] k) CUP (Peso Cubano)
+- [x] l) DOP (Peso Dominicano)
+- [x] m) MXN (Peso Mexicano)
 
 ---
 
 ## 🛠️ Funcionalidades a incluir
 
-- [ ] Pedir al usuario cuántos euros desea convertir
-- [ ] Mostrar un listado con los códigos de moneda disponibles
-- [ ] Solicitar al usuario la moneda destino
-- [ ] Validar la entrada del usuario
-- [ ] Calcular la conversión
-- [ ] Mostrar el resultado con formato decimal
-- [ ] Permitir nuevas conversiones hasta que el usuario desee salir
+- [x] Pedir al usuario cuántos euros desea convertir
+- [x] Mostrar un listado con los códigos de moneda disponibles
+- [x] Solicitar al usuario la moneda destino
+- [x] Validar la entrada del usuario
+- [x] Calcular la conversión
+- [x] Mostrar el resultado con formato decimal
+- [x] Permitir nuevas conversiones hasta que el usuario desee salir

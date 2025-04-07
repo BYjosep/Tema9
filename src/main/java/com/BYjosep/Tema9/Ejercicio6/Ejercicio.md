@@ -10,21 +10,19 @@ Queremos hacer una aplicación que guarde parejas de palabras en **valenciano-in
 ## ✅ Checklist de Tareas
 
 ### Estructura de Datos
-- [ ] Elegir estructura de datos adecuada 
+- [x] Elegir estructura de datos adecuada 
 
 ### Funcionalidad del Programa
-- [ ] Mostrar menú principal
-- [ ] Opción 1: Introducir parejas de palabras
-- [ ] Pedir cuántas parejas se desean introducir
+- [x] Mostrar menú principal
+- [x] Opción 1: Introducir parejas de palabras
+- [x] Pedir cuántas parejas se desean introducir
 - [x] Solicitar traducción 
-- [ ] Guardar correctamente cada pareja
-- [ ] Opción 2: Traducir palabra
-- [ ] Mostrar traducción si existe
-- [ ] Indicar si la palabra no existe
-- [ ] Opción 0: Salir de la aplicación
+- [x] Guardar correctamente cada pareja
+- [x] Opción 2: Traducir palabra
+- [x] Mostrar traducción si existe
+- [x] Indicar si la palabra no existe
+- [x] Opción 0: Salir de la aplicación
 
 ### Validaciones y Extras
-- [ ] Validar que no se repitan palabras
-- [ ] Permitir ingresar mayúsculas/minúsculas sin afectar la búsqueda
-- [ ] Mantener el menú activo hasta que el usuario seleccione salir
-
+- [x] Validar que no se repitan palabras
+- [x] Mantener el menú activo hasta que el usuario seleccione salir
