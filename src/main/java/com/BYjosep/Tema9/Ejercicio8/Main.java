@@ -4,9 +4,14 @@ import com.BYjosep.Tema9.lib.Int.LibInInts;
 import com.BYjosep.Tema9.lib.LibStrings;
 import com.BYjosep.Tema9.lib.ANSI;
 
-public class Main {
+public class Main implements IDiccionario {
+    private final Diccionario diccionario = new Diccionario();
+
     public static void main(String[] args) {
-        Diccionario diccionario = new Diccionario();
+        new Main().ejecutar(); // 👈 Aquí lanzamos todo desde instancia
+    }
+
+    public void ejecutar() {
         boolean continuar = true;
 
         while (continuar) {
@@ -29,44 +34,56 @@ public class Main {
                     ANSI.printf("Saliendo del programa...", true, ANSI.Color.MAGENTA, ANSI.Color.NONE);
                     continuar = false;
                 }
-                case 1 -> {
-                    String palabra = LibStrings.ingresarTexto("Introduce palabra:");
-                    String definicion = LibStrings.ingresarTexto("Introduce definición:");
-                    if (diccionario.agregarPalabra(palabra, definicion)) {
-                        System.out.println("Palabra añadida con éxito.");
-                    } else {
-                        ANSI.printf("La palabra ya existe en el diccionario.", true, ANSI.Color.RED, ANSI.Color.NONE);
-                    }
-                }
-                case 2 -> {
-                    String palabra = LibStrings.ingresarTexto("Introduce la palabra a modificar:");
-                    if (diccionario.consultarPalabra(palabra) != null) {
-                        String nuevaDefinicion = LibStrings.ingresarTexto("Introduce nueva definición:");
-                        diccionario.modificarPalabra(palabra, nuevaDefinicion);
-                        System.out.println("Palabra modificada correctamente.");
-                    } else {
-                        ANSI.printf("La palabra no existe.", true, ANSI.Color.RED, ANSI.Color.NONE);
-                    }
-                }
-                case 3 -> {
-                    String palabra = LibStrings.ingresarTexto("Introduce la palabra a eliminar:");
-                    if (diccionario.eliminarPalabra(palabra)) {
-                        System.out.println("Palabra eliminada.");
-                    } else {
-                        ANSI.printf("La palabra no existe.", true, ANSI.Color.RED, ANSI.Color.NONE);
-                    }
-                }
-                case 4 -> {
-                    String palabra = LibStrings.ingresarTexto("Introduce la palabra a consultar:");
-                    String definicion = diccionario.consultarPalabra(palabra);
-                    if (definicion != null) {
-                        System.out.println("Definición: " + definicion);
-                    } else {
-                        ANSI.printf("La palabra no existe.", true, ANSI.Color.RED, ANSI.Color.NONE);
-                    }
-                }
+                case 1 -> anadirAlDiccionario();
+                case 2 -> modificarEntrada();
+                case 3 -> eliminarEntrada();
+                case 4 -> consultarEntrada();
                 case 5 -> diccionario.mostrarDiccionario();
             }
+        }
+    }
+
+    @Override
+    public void anadirAlDiccionario() {
+        String palabra = LibStrings.ingresarTexto("Introduce palabra:");
+        String definicion = LibStrings.ingresarTexto("Introduce definición:");
+        if (diccionario.agregarPalabra(palabra, definicion)) {
+            System.out.println("Palabra añadida con éxito.");
+        } else {
+            ANSI.printf("La palabra ya existe en el diccionario.", true, ANSI.Color.RED, ANSI.Color.NONE);
+        }
+    }
+
+    @Override
+    public void modificarEntrada() {
+        String palabra = LibStrings.ingresarTexto("Introduce la palabra a modificar:");
+        if (diccionario.consultarPalabra(palabra) != null) {
+            String nuevaDefinicion = LibStrings.ingresarTexto("Introduce nueva definición:");
+            diccionario.modificarPalabra(palabra, nuevaDefinicion);
+            System.out.println("Palabra modificada correctamente.");
+        } else {
+            ANSI.printf("La palabra no existe.", true, ANSI.Color.RED, ANSI.Color.NONE);
+        }
+    }
+
+    @Override
+    public void eliminarEntrada() {
+        String palabra = LibStrings.ingresarTexto("Introduce la palabra a eliminar:");
+        if (diccionario.eliminarPalabra(palabra)) {
+            System.out.println("Palabra eliminada.");
+        } else {
+            ANSI.printf("La palabra no existe.", true, ANSI.Color.RED, ANSI.Color.NONE);
+        }
+    }
+
+    @Override
+    public void consultarEntrada() {
+        String palabra = LibStrings.ingresarTexto("Introduce la palabra a consultar:");
+        String definicion = diccionario.consultarPalabra(palabra);
+        if (definicion != null) {
+            System.out.println("Definición: " + definicion);
+        } else {
+            ANSI.printf("La palabra no existe.", true, ANSI.Color.RED, ANSI.Color.NONE);
         }
     }
 }
