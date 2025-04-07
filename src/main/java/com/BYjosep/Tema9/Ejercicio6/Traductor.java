@@ -5,48 +5,36 @@ import com.BYjosep.Tema9.lib.ANSI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Traductor extends HashMap<String,String> {
-    private Map<String,String> diccionario;
-    public Traductor() {
-        diccionario = new HashMap<>();
-    }
-    public boolean addTraduccion(String palabraValenciano, String palabraIngles) {
-        if (diccionario.containsKey(palabraValenciano) || diccionario.containsValue(palabraIngles)|| palabraValenciano.isEmpty() || palabraIngles.isEmpty()) {
-            return false;
-        }
-        diccionario.put(palabraValenciano,palabraIngles);
-        return true;
-    }
+public class Traductor {
+    private final Map<String, String> diccionario = new HashMap<>();
 
-    public boolean setTraduccion(String palabraValenciano, String palabraIngles) {
-        if (!diccionario.containsKey(palabraValenciano) || diccionario.containsValue(palabraIngles)) {
+    public boolean addTraduccion(String palabraValenciano, String palabraIngles) {
+        if (palabraValenciano == null || palabraIngles == null ||
+                palabraValenciano.isEmpty() || palabraIngles.isEmpty() ||
+                diccionario.containsKey(palabraValenciano) ||
+                diccionario.containsValue(palabraIngles)) {
             return false;
         }
-        diccionario.put(palabraValenciano,palabraIngles);
+        diccionario.put(palabraValenciano.toLowerCase(), palabraIngles.toLowerCase());
         return true;
     }
 
     public String getTraduccion(String palabra) {
-        if (!diccionario.containsKey(palabra)|| !diccionario.containsValue(palabra) || palabra.isEmpty()) {
-        return ANSI.format("La palabra no consta en el diccionario",false, ANSI.Color.YELLOW, ANSI.Color.NONE);
+        if (palabra == null || palabra.isEmpty()) {
+            return ANSI.format("La palabra no consta en el diccionario", false, ANSI.Color.YELLOW, ANSI.Color.NONE);
         }
-
+        palabra = palabra.toLowerCase();
         for (Map.Entry<String, String> entrada : diccionario.entrySet()) {
-            String clave = entrada.getKey();
-            String valor = entrada.getValue();
+            String val = entrada.getKey();
+            String eng = entrada.getValue();
 
-            if (clave.contains(palabra) &&  valor.contains(palabra)) {
-                return "La palabra es igual en ambos idiomas";
-            }
-            if (clave.contains(palabra)) {
-
-                return valor;
-            }
-            if (valor.contains(palabra)) {
-
-                return clave;
-            }
+            if (val.equalsIgnoreCase(palabra)) return eng;
+            if (eng.equalsIgnoreCase(palabra)) return val;
         }
-        return "Palabra no encontrada en el diccionario";
+        return ANSI.format("La palabra no existe.", false, ANSI.Color.YELLOW, ANSI.Color.NONE);
+    }
+
+    public Map<String, String> getDiccionario() {
+        return diccionario;
     }
 }
