@@ -4,13 +4,13 @@ import java.util.*;
 
 public class CentroEducativo {
 
-    private final Set<Alumno> alumnos;
+    private final Collection<Alumno> alumnos;
     private final Map<Grupo, Set<Alumno>> alumnosPorGrupo;
     private final Map<Profesor, Set<Alumno>> alumnosPorProfesor;
-    private final Set<Grupo> grupos;
-    private final Set<Asignatura> asignaturas;
-    private final Set<Profesor> profesores;
-    private final Set<Aula> aulas;
+    private final Collection<Grupo> grupos;
+    private final Collection<Asignatura> asignaturas;
+    private final Collection<Profesor> profesores;
+    private final Collection<Aula> aulas;
 
     public CentroEducativo() {
         this.alumnos = new HashSet<>();
@@ -67,31 +67,41 @@ public class CentroEducativo {
         return aulas.add(aula);
     }
 
-    public Set<Alumno> obtenerAlumnos() {
-        return Collections.unmodifiableSet(alumnos);
+    public Collection<Alumno> obtenerAlumnos() {
+        return new HashSet<>(alumnos);
     }
 
-    public Set<Grupo> obtenerGrupos() {
-        return Collections.unmodifiableSet(grupos);
+    public Collection<Grupo> obtenerGrupos() {
+        return new HashSet<>(grupos);
     }
 
-    public Set<Asignatura> obtenerAsignaturas() {
-        return Collections.unmodifiableSet(asignaturas);
+    public Collection<Asignatura> obtenerAsignaturas() {
+        if (asignaturas.isEmpty()) {
+            throw new IllegalStateException("No se han encontrado asignaturas");
+        }
+        return new HashSet<>(asignaturas);
     }
 
-    public Set<Profesor> obtenerProfesores() {
-        return Collections.unmodifiableSet(profesores);
+    public Collection<Profesor> obtenerProfesores() {
+        if (profesores.isEmpty()) {
+            throw new IllegalStateException("No se han encontrado profesores");
+        }
+        return new HashSet<>(profesores);
     }
 
-    public Set<Aula> obtenerAulas() {
-        return Collections.unmodifiableSet(aulas);
+
+    public Collection<Aula> obtenerAulas() {
+        if (aulas.isEmpty()) {
+            throw new IllegalStateException("No se han encontrado aula");
+        }
+        return new HashSet<>(aulas);
     }
 
-    public Set<Alumno> obtenerAlumnosPorGrupo(Grupo grupo) {
+    public Collection<Alumno> obtenerAlumnosPorGrupo(Grupo grupo) {
         return alumnosPorGrupo.getOrDefault(grupo, Collections.emptySet());
     }
 
-    public Set<Alumno> obtenerAlumnosPorProfesor(Profesor profesor) {
+    public Collection<Alumno> obtenerAlumnosPorProfesor(Profesor profesor) {
         return alumnosPorProfesor.getOrDefault(profesor, Collections.emptySet());
     }
 
@@ -163,5 +173,16 @@ public class CentroEducativo {
         }
         sb.append("\n}\n");
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "CentroEducativo{" +
+                "alumnos=" + alumnos +
+                ", grupos=" + grupos +
+                ", asignaturas=" + asignaturas +
+                ", profesores=" + profesores +
+                ", aulas=" + aulas +
+                '}';
     }
 }

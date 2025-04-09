@@ -26,19 +26,25 @@ public class Main {
                     9. Mostrar alumnos por grupo
                     0. Salir
                     Selecciona una opción:
-                    """, 0, 9, "Opción fuera de rango");
+                    """, 0, 10, "Opción fuera de rango");
 
-            switch (opcion) {
-                case 1 -> altaAlumno();
-                case 2 -> altaProfesor();
-                case 3 -> altaAsignatura();
-                case 4 -> altaGrupo();
-                case 5 -> altaAula();
-                case 6 -> asignarAsignatura();
-                case 7 -> asignarGrupo();
-                case 8 -> mostrarAlumnosPorProfesor();
-                case 9 -> mostrarAlumnosPorGrupo();
-                case 0 -> salir = true;
+            try {
+                switch (opcion) {
+                    case 1 -> altaAlumno();
+                    case 2 -> altaProfesor();
+                    case 3 -> altaAsignatura();
+                    case 4 -> altaGrupo();
+                    case 5 -> altaAula();
+                    case 6 -> asignarAsignatura();
+                    case 7 -> asignarGrupo();
+                    case 8 -> mostrarAlumnosPorProfesor();
+                    case 9 -> mostrarAlumnosPorGrupo();
+                    case 0 -> salir = true;
+                    case 10 -> System.out.println(centro);
+                }
+
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -47,8 +53,12 @@ public class Main {
      * Da de alta un nuevo alumno solicitando nombre y grupo.
      */
     private static void altaAlumno() {
+        if (centro.obtenerGrupos().isEmpty()) {
+            throw new IllegalStateException("No se puede añadir alumnos si no existen grupos");
+        }
         System.out.print("Nombre del alumno: ");
         String nombre = scanner.nextLine();
+        System.out.println(centro.obtenerGrupos());
         System.out.print("ID del grupo: ");
         int idGrupo = Integer.parseInt(scanner.nextLine());
         Grupo grupo = centro.obtenerGrupos().stream().filter(g -> g.getId() == idGrupo).findFirst().orElse(null);
@@ -81,8 +91,12 @@ public class Main {
      * Da de alta una nueva asignatura solicitando el nombre y el DNI del profesor.
      */
     private static void altaAsignatura() {
+        if (centro.obtenerProfesores().isEmpty()) {
+            throw new IllegalStateException("No se puede añadir asignaturas sin profesores");
+        }
         System.out.print("Nombre de la asignatura: ");
         String nombre = scanner.nextLine();
+        System.out.println(centro.obtenerProfesores());
         System.out.print("DNI del profesor: ");
         String dni = scanner.nextLine();
         Profesor profesor = centro.obtenerProfesores().stream().filter(p -> p.getDni().equals(dni)).findFirst().orElse(null);
@@ -99,9 +113,14 @@ public class Main {
      * Da de alta un nuevo grupo solicitando nombre y aula existente.
      */
     private static void altaGrupo() {
+        if (centro.obtenerAulas().isEmpty()){
+            throw new IllegalStateException("No se pueden añadir grupos sin Aulas");
+        }
         System.out.print("Nombre del grupo: ");
         String nombre = scanner.nextLine();
+        System.out.println(centro.obtenerAulas());
         System.out.print("ID del aula: ");
+
         int idAula = Integer.parseInt(scanner.nextLine());
         Aula aula = centro.obtenerAulas().stream().filter(a -> a.getId() == idAula).findFirst().orElse(null);
         if (aula == null) {
@@ -168,11 +187,10 @@ public class Main {
      * Muestra los alumnos asignados a un profesor según su DNI.
      */
     private static void mostrarAlumnosPorProfesor() {
-        Profesor profesor= new Profesor(null,null,0);
-        if (profesor != null) {
+        ArrayList<Profesor> profesores = (ArrayList<Profesor>) centro.obtenerProfesores();
+        for(Profesor profesor : profesores) {
 
-        } else {
-            throw new NoSuchElementException("Profesor no encontrado.");
+            System.out.println(centro.obtenerAlumnosPorProfesor(profesor));
         }
     }
 
@@ -180,12 +198,11 @@ public class Main {
      * Muestra los alumnos asignados a un grupo según su ID.
      */
     private static void mostrarAlumnosPorGrupo() {
+        ArrayList<Grupo> grupos = (ArrayList<Grupo>) centro.obtenerGrupos();
+        for(Grupo grupo : grupos) {
 
-        Grupo grupo = new Grupo(null,null);
-        if (grupo != null) {
-
-        } else {
-            throw new NoSuchElementException("Grupo no encontrado.");
+            System.out.println(centro.mostrarAlumnosPorGrupo(grupo));
         }
+
     }
 }
