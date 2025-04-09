@@ -5,7 +5,7 @@
 > hasta el 11
 > 
 > - [ ] Ejercicio 11
-> - [ ] hacer Benchmark
+> - [ ] implementar Benchmark para minimo 3 estructuras de datos
 >
 
 
