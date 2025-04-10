@@ -127,8 +127,9 @@ public class CentroEducativo {
      * @return true si se asignó correctamente, false si el alumno o grupo no están registrados.
      */
     public boolean asignarGrupoAAlumno(Alumno alumno, Grupo grupo) {
-        if (!alumnos.contains(alumno)) return false;
-        if (!grupos.contains(grupo)) return false;
+        if (!alumnos.contains(alumno)||!grupos.contains(grupo) ) return false;
+
+
         alumnosPorGrupo.computeIfAbsent(grupo, g -> new HashSet<>()).add(alumno);
         return true;
     }
@@ -139,20 +140,25 @@ public class CentroEducativo {
      * @return Cadena formateada con los alumnos asociados.
      * @throws NoSuchElementException si el profesor no tiene alumnos asociados.
      */
-    public String mostrarAlumnosPorProfesor(Profesor profesor) throws NoSuchElementException{
+    public String mostrarAlumnosPorProfesor(Profesor profesor) throws NoSuchElementException {
         StringBuilder sb = new StringBuilder();
         sb.append("Profesor: ").append(profesor).append("[\nAlumnos: ");
-        Set<Alumno> alumnos = alumnosPorProfesor.get(profesor);
-        if (alumnos != null && !alumnos.isEmpty()) {
+
+        Set<Alumno> alumnosSet = alumnosPorProfesor.get(profesor);
+        if (alumnosSet != null && !alumnosSet.isEmpty()) {
+            // Convertir a lista sin stream
+            List<Alumno> alumnos = new ArrayList<>(alumnosSet);
             for (Alumno alumno : alumnos) {
                 sb.append("(").append(alumno.getNombre()).append(") ");
             }
         } else {
             throw new NoSuchElementException("¿Dónde vas? ¡No existe ningún alumno!");
         }
+
         sb.append("\n}\n");
         return sb.toString();
     }
+
 
     /**
      * Devuelve una representación en texto de todos los alumnos asignados a un grupo.

@@ -1,5 +1,6 @@
 package com.BYjosep.Tema9.Ejercicio11;
 
+import com.BYjosep.Tema9.lib.ANSI;
 import com.BYjosep.Tema9.lib.Int.LibInInts;
 
 import java.util.*;
@@ -13,38 +14,67 @@ public class Main {
         boolean salir = false;
         while (!salir) {
             int opcion = LibInInts.ingresarUnNumero("""
-                    MENÚ CENTRO EDUCATIVO
-                    ------------------------
-                    1. Alta alumno
-                    2. Alta profesor
-                    3. Alta asignatura
-                    4. Alta grupo
-                    5. Alta aula
-                    6. Asignar asignatura a alumno
-                    7. Asignar grupo a alumno
-                    8. Mostrar alumnos por profesor
-                    9. Mostrar alumnos por grupo
-                    0. Salir
-                    Selecciona una opción:
-                    """, 0, 10, "Opción fuera de rango");
+                    ╔════════════════════════════════════════════╗
+                    ║         MENÚ CENTRO EDUCATIVO              ║
+                    ╠════════════════════════════════════════════╣
+                    ║ 1. Menú de Altas                           ║
+                    ║ 2. Asignar asignatura a alumno             ║
+                    ║ 3. Asignar grupo a alumno                  ║
+                    ║ 4. Mostrar alumnos por profesor            ║
+                    ║ 5. Mostrar alumnos por grupo               ║
+                    ╠════════════════════════════════════════════╣
+                    ║ 0. Salir                                   ║
+                    ╚════════════════════════════════════════════╝
+                    Seleccione una opción:
+                    """, 0, 5, "Opción fuera de rango");
 
             try {
                 switch (opcion) {
-                    case 1 -> altaAlumno();
-                    case 2 -> altaProfesor();
-                    case 3 -> altaAsignatura();
-                    case 4 -> altaGrupo();
+                    case 1 -> menuAlta();
                     case 5 -> altaAula();
                     case 6 -> asignarAsignatura();
                     case 7 -> asignarGrupo();
                     case 8 -> mostrarAlumnosPorProfesor();
                     case 9 -> mostrarAlumnosPorGrupo();
                     case 0 -> salir = true;
-                    case 10 -> System.out.println(centro);
                 }
 
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+            } catch (IllegalStateException ise) {
+                System.err.println(ise.getMessage());
+            }
+        }
+    }
+
+    private static void menuAlta(){
+        int opcion;
+        opcion = LibInInts.ingresarUnNumero("""
+                ╔══════════════════════════════════╗
+                ║         MENÚ DE ALTA             ║
+                ╠══════════════════════════════════╣
+                ║ 1. Alta alumno                   ║
+                ║ 2. Alta profesor                 ║
+                ║ 3. Alta asignatura               ║
+                ║ 4. Alta grupo                    ║
+                ║ 5. Alta aula                     ║
+                ╠══════════════════════════════════╣
+                ║ 0. Salir                         ║
+                ╚══════════════════════════════════╝
+                """,0,5);
+        switch (opcion){
+            case 1 -> altaAlumno();
+            case 2 -> altaProfesor();
+            case 3 -> altaAsignatura();
+            case 4 -> altaGrupo();
+            case 5 -> altaAula();
+            case 0 -> {
+                System.out.println("Saliendo al menu principal");
+                try {
+                    Thread.sleep(1000);
+                    ANSI.clearScreen();
+
+                }catch (InterruptedException ie) {
+                    System.err.println(ie.getMessage());
+                }
             }
         }
     }
@@ -63,8 +93,7 @@ public class Main {
         int idGrupo = Integer.parseInt(scanner.nextLine());
         Grupo grupo = centro.obtenerGrupos().stream().filter(g -> g.getId() == idGrupo).findFirst().orElse(null);
         if (grupo == null) {
-            System.out.println("Grupo no encontrado.");
-            return;
+            throw new IllegalStateException("Grupo no encontrado");
         }
         Alumno alumno = new Alumno(nombre, grupo);
         centro.altaAlumno(alumno);
@@ -101,8 +130,7 @@ public class Main {
         String dni = scanner.nextLine();
         Profesor profesor = centro.obtenerProfesores().stream().filter(p -> p.getDni().equals(dni)).findFirst().orElse(null);
         if (profesor == null) {
-            System.out.println("Profesor no encontrado.");
-            return;
+            throw new IllegalStateException("Profesor no encontrado.");
         }
         Asignatura asignatura = new Asignatura(nombre, profesor);
         centro.altaAsignatura(asignatura);
@@ -124,8 +152,7 @@ public class Main {
         int idAula = Integer.parseInt(scanner.nextLine());
         Aula aula = centro.obtenerAulas().stream().filter(a -> a.getId() == idAula).findFirst().orElse(null);
         if (aula == null) {
-            System.out.println("Aula no encontrada.");
-            return;
+            throw new IllegalStateException("Aula no encontrada.");
         }
         Grupo grupo = new Grupo(nombre, aula);
         centro.altaGrupo(grupo);
@@ -147,19 +174,24 @@ public class Main {
      * Asigna una asignatura existente a un alumno registrado.
      */
     private static void asignarAsignatura() {
+        if (centro.obtenerAlumnos().isEmpty()){
+            throw new IllegalStateException("No hay alumnos registrados.");
+        } else if (centro.obtenerAsignaturas().isEmpty()) {
+            throw new IllegalStateException("No hay asignaturas registrados.");
+        }
+        System.out.println(centro.obtenerAlumnos());
         System.out.print("ID del alumno: ");
         int idAlumno = Integer.parseInt(scanner.nextLine());
         Alumno alumno = centro.obtenerAlumnos().stream().filter(a -> a.getId() == idAlumno).findFirst().orElse(null);
         if (alumno == null) {
-            System.out.println("Alumno no encontrado.");
-            return;
+            throw new IllegalStateException("Alumno no encontrado.");
         }
+        System.out.println(centro.obtenerAsignaturas());
         System.out.print("ID de la asignatura: ");
         int idAsig = Integer.parseInt(scanner.nextLine());
         Asignatura asignatura = centro.obtenerAsignaturas().stream().filter(a -> a.getId() == idAsig).findFirst().orElse(null);
         if (asignatura == null) {
-            System.out.println("Asignatura no encontrada.");
-            return;
+            throw new IllegalStateException("Asignatura no encontrado.");
         }
         centro.asignarAsignaturaAAlumno(alumno, asignatura);
         System.out.println("Asignatura asignada al alumno.");
@@ -175,10 +207,14 @@ public class Main {
         System.out.print("ID del grupo: ");
         int idGrupo = Integer.parseInt(scanner.nextLine());
         Grupo grupo = centro.obtenerGrupos().stream().filter(g -> g.getId() == idGrupo).findFirst().orElse(null);
-        if (alumno == null || grupo == null) {
-            System.out.println("Alumno o grupo no encontrado.");
-            return;
+
+        if (grupo == null) {
+            throw new IllegalStateException("Grupo no encontrado.");
         }
+        if (alumno == null ) {
+            throw new IllegalStateException("Alumno no encontrado.");
+        }
+
         centro.asignarGrupoAAlumno(alumno, grupo);
         System.out.println("Grupo asignado al alumno.");
     }
@@ -187,10 +223,15 @@ public class Main {
      * Muestra los alumnos asignados a un profesor según su DNI.
      */
     private static void mostrarAlumnosPorProfesor() {
-        ArrayList<Profesor> profesores = (ArrayList<Profesor>) centro.obtenerProfesores();
-        for(Profesor profesor : profesores) {
+        ArrayList<Profesor> profesores = new ArrayList<>(centro.obtenerProfesores());
+        try {
+            for(Profesor profesor : profesores) {
 
-            System.out.println(centro.obtenerAlumnosPorProfesor(profesor));
+                System.out.println(centro.mostrarAlumnosPorProfesor(profesor));
+            }
+
+        }catch(NoSuchElementException nee) {
+            System.err.println(nee.getMessage());
         }
     }
 
@@ -198,10 +239,14 @@ public class Main {
      * Muestra los alumnos asignados a un grupo según su ID.
      */
     private static void mostrarAlumnosPorGrupo() {
-        ArrayList<Grupo> grupos = (ArrayList<Grupo>) centro.obtenerGrupos();
-        for(Grupo grupo : grupos) {
-
+        ArrayList<Grupo> grupos = new ArrayList<>(centro.obtenerGrupos());
+        try {
+            for(Grupo grupo : grupos) {
             System.out.println(centro.mostrarAlumnosPorGrupo(grupo));
+        }
+
+        }catch(NoSuchElementException nee) {
+            System.err.println(nee.getMessage());
         }
 
     }

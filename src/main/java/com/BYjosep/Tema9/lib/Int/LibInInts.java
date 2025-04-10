@@ -55,14 +55,9 @@ public class LibInInts {
      * @return Devuelve el número de la opcion seleccionada
      */
     public static int ingresarUnNumero(String texto, int min, int max) {
-        int numero;
 
-        do {
-            System.out.println(texto);
-            numero = Integer.parseInt(scanner.nextLine());
-        } while (numero < min && numero > max);
+        return ingresarUnNumero(texto,min,max,"");
 
-        return numero;
     }
 
 
